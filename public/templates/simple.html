@@ -1,0 +1,33 @@
+{% extends 'skeleton.html' %}
+{% load static %}
+
+
+{% block main %}
+<div class="container pt-5">
+    <h4>Timetable(s)</h4>
+    <p class="text-muted">{{title}}</p>
+    <hr>
+    {% for schedule in schedules %}        
+        <p>>> {{schedule.created}} <<</p>
+        <div class="row">
+            {% for assignment in schedule.assignments.all %}
+            <div class="col-2">{{ assignment.course.name }}</div>
+            <div class="col-8">
+                {% for time in assignment.times.all %}
+                    {{ time.day }}, {{ time.time }}
+                {% endfor %}
+            </div>
+            <div class="col-2">{{ assignment.course.simpleinstructor_set.first.name }}</div>
+            {% endfor %}
+        </div>
+        <hr>
+    {% endfor %}
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+
+</script>
+{% endblock %}

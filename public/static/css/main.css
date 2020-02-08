@@ -1,0 +1,27 @@
+.site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    padding-right: 0 !important; }
+  
+  .site-content {
+    flex: 1; }
+  
+  .page-spacer-p {
+    padding: 80px; }
+  
+  .d-none {
+    display: none; }
+  
+  .br-10 {
+    border-radius: 10px; }
+  
+  .bt-1 {
+    border-top: 1px solid; }
+  
+  body {
+    font-style: antialised; }
+    
+  .w-90 {
+    width: 90% !important; }
+  

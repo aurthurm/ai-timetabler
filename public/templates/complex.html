@@ -1,0 +1,51 @@
+{% extends 'skeleton.html' %}
+{% load static %}
+
+
+{% block main %}
+<div class="container pt-5">
+    <h4>Timetable(s)</h4>
+    <p class="text-muted">{{title}}</p>
+    <hr>
+    {% for schedule in schedules %}
+        <p>>> {{schedule.created}} <<</p>
+        <table class="table table-sm bg-white tablesorter" id="fuelTable">
+            <thead>
+                <tr>
+                    <th scope="col">Department</th>
+                    <th scope="col">Course</th>
+                    <th scope="col">Room</th>
+                    <th scope="col">Instructor</th>
+                    <th scope="col">Meeting Times</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for class in schedule.classes.all %}
+                    <tr>
+                        <td>{{ class.course.department.name }}</td>
+                        <td>{{ class.course.name }}</td>
+                        <td>{{ class.room.name }}</td>
+                        <td>{{ class.instructor.name }}</td>
+                        <td>{{ class.meeting_time.times }}</td>
+                        <td></td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <th colspan="8">Error was encountered during timetable rendering </th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <hr>
+    {% endfor  %}
+
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+
+</script>
+{% endblock %}
