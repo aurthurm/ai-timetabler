@@ -1,5 +1,5 @@
 {% extends 'skeleton.html' %}
-{% load static %}
+{% load static extract_detail %}
 
 
 {% block main %}
@@ -7,6 +7,9 @@
     <h4>Timetable(s)</h4>
     <p class="text-muted">{{title}}</p>
     <hr>
+
+    <!-- old dispaly -->    
+
     {% for schedule in schedules %}        
         <p>>> {{schedule.created}} <<</p>
         <div class="row">
@@ -22,6 +25,52 @@
         </div>
         <hr>
     {% endfor %}
+
+    <!-- new dispaly -->    
+
+    {% for table in tables %}  
+    {% extract_created table=table as created %}    
+    <p>>> {{ created  }} <<</p>    
+    <table class="table table-sm bg-white">
+        <thead>
+            <tr>
+                <th scope="col">.</th>
+                <th scope="col">Monday</th>
+                <th scope="col">Tuesday</th>
+                <th scope="col">Wednesday</th>
+                <th scope="col">Thursday</th>
+                <th scope="col">Friday</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in table.items%}
+                {% if key == 'created' %}
+                {% else %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value.monday.course }} <br/><span class="text-muted">{{ value.monday.instructor }}</span></td>
+                        <td>{{ value.tuesday.course }} <br/><span class="text-muted">{{ value.tuesday.instructor }}</span></td>
+                        <td>{{ value.wednesday.course }} <br/><span class="text-muted">{{ value.wednesday.instructor }}</span></td>
+                        <td>{{ value.thursday.course }} <br/><span class="text-muted">{{ value.thursday.instructor }}</span></td>
+                        <td>{{ value.friday.course }} <br/><span class="text-muted">{{ value.friday.instructor }}</span></td>
+                    </tr>
+                {% endif %}
+            {% empty %}
+                <tr>
+                    <th colspan="8">You have no Timetable schedules yet </th>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    <hr>
+{% endfor %}
+
+
+
+
+
+
 </div>
 {% endblock %}
 

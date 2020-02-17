@@ -95,7 +95,7 @@ class SimpleCourseAssignment(models.Model):
     )
 
     def __str__(self):
-        return f"Asmnt for {self.course.name}"
+        return "Asmnt for " +  str(self.course.name)
 
 class SimpleSchedule(models.Model):
     """
@@ -110,4 +110,4 @@ class SimpleSchedule(models.Model):
     )
 
     def __str__(self):
-        return f"Schedule: {self.created}"
+        return "Schedule: " + str(self.created)

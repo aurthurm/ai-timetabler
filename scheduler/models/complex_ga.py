@@ -89,7 +89,7 @@ class ComplexClass(models.Model):
     )
 
     def __str__(self):
-        return f"Class: {self.course.name} - {self.room.name} - {self.instructor.name} - {self.meeting_time.times}"
+        return "Class: " + self.course.name + " - " + self.room.name + " - " + self.instructor.name + " - " + str(self.meeting_time.times)
 
 
 class ComplexSchedule(models.Model):
@@ -105,4 +105,4 @@ class ComplexSchedule(models.Model):
     )
 
     def __str__(self):
-        return f"Schedule: {self.created}"
+        return "Schedule: " +  str(self.created)
